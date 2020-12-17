@@ -12,7 +12,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -112,11 +112,17 @@ top_priceIkea <- proper_ikea[order(-proper_ikea$price),] %>%
 top_ikea_graph <- top_priceIkea %>% 
   arrange(price) %>% 
   mutate( category = fct_reorder(category, price)) %>% 
-  ggplot(aes(x = category, y = price, fill = category)) +
-  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), plot.title = element_text(hjust = 0.5, size = 18, face = "bold"), plot.subtitle = element_text(hjust = 0.5, face = "italic")) +
+  ggplot(aes(x = category, 
+             y = price, 
+             fill = category)) +
+  theme(axis.title.x=element_blank(), 
+        axis.text.x=element_blank(), 
+        plot.title = element_text(hjust = 0.5, 
+                                  size = 18, face = "bold"), 
+        plot.subtitle = element_text(hjust = 0.5, 
+                                     face = "italic")) +
   labs(fill = "Appliance Type", title = "Most Expensive Appliances at Ikea", subtitle = "Macalester Intro to Data science Tidy Tuesday", y = "Recent Price in Saudi Riyals") +
   geom_boxplot(color = "darkgray")
-
 
 ggplotly(top_ikea_graph,
          tooltip = c("text", "x"))
@@ -231,10 +237,14 @@ mallorca_map <- get_stamenmap(
 
 ggmap(mallorca_map) +
   geom_point(data = mallorca_bike_day7, 
-             aes(x = lon, y = lat),
-             color = "blue", size = .5) +
+             aes(x = lon, 
+                 y = lat),
+             color = "blue", 
+             size = .5) +
   geom_path(data = mallorca_bike_day7, 
-             aes(x = lon, y = lat, color = ele),
+             aes(x = lon, 
+                 y = lat, 
+                 color = ele),
              size = .5) +
   labs(title = "Lisa Mallorca Bike Trail",
        subtitle = "Time: {frame_along}") +
@@ -255,12 +265,14 @@ total_trail <- panama_swim %>%
 panama_map <- get_stamenmap(
   bbox = c(left = -79.56, bottom = 8.88, right = -79.41, top = 9.001),
   maptype = "terrain",
-  zoom = 13
-)
+  zoom = 13)
 
 ggmap(panama_map) +
   geom_point(data = total_trail, 
-             aes(x = lon, y = lat, color = event, shape = event),
+             aes(x = lon, 
+                 y = lat, 
+                 color = event, 
+                 shape = event),
              size = 2) +
   geom_path(data = total_trail,
             aes(x = lon, y = lat, color = event),
@@ -316,7 +328,6 @@ animate(covid19trajectory_gganim,
         duration = 30)
 
 anim_save("covidcases.gif")
-
 ```
 
   
@@ -363,8 +374,6 @@ covid19_map <- covid19_population %>%
 animate(covid19_map, duration = 30)
 
 anim_save("covid19.gif", covid19_map)
-
-
 ```
 
 

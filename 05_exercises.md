@@ -16,161 +16,20 @@ output:
 
 ```r
 library(tidyverse)     # for data cleaning and plotting
-```
-
-```
-## ── Attaching packages ──────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-```
-
-```
-## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.0
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0
-```
-
-```
-## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(googlesheets4) # for reading googlesheet data
 library(lubridate)     # for date manipulation
-```
-
-```
-## 
-## Attaching package: 'lubridate'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-```
-
-```r
 library(openintro)     # for the abbr2state() function
-```
-
-```
-## Loading required package: airports
-```
-
-```
-## Loading required package: cherryblossom
-```
-
-```
-## Loading required package: usdata
-```
-
-```r
 library(palmerpenguins)# for Palmer penguin data
 library(maps)          # for map data
-```
-
-```
-## 
-## Attaching package: 'maps'
-```
-
-```
-## The following object is masked from 'package:purrr':
-## 
-##     map
-```
-
-```r
 library(ggmap)         # for mapping points on maps
-```
-
-```
-## Google's Terms of Service: https://cloud.google.com/maps-platform/terms/.
-```
-
-```
-## Please cite ggmap if you use it! See citation("ggmap") for details.
-```
-
-```r
 library(gplots)        # for col2hex() function
-```
-
-```
-## 
-## Attaching package: 'gplots'
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     lowess
-```
-
-```r
 library(RColorBrewer)  # for color palettes
 library(sf)            # for working with spatial data
-```
-
-```
-## Linking to GEOS 3.8.1, GDAL 3.1.1, PROJ 6.3.1
-```
-
-```r
 library(leaflet)       # for highly customizable mapping
 library(ggthemes)      # for more themes (including theme_map())
 library(plotly)        # for the ggplotly() - basic interactivity
-```
-
-```
-## 
-## Attaching package: 'plotly'
-```
-
-```
-## The following object is masked from 'package:ggmap':
-## 
-##     wind
-```
-
-```
-## The following object is masked from 'package:ggplot2':
-## 
-##     last_plot
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     filter
-```
-
-```
-## The following object is masked from 'package:graphics':
-## 
-##     layout
-```
-
-```r
 library(gganimate)     # for adding animation layers to ggplots
 library(transformr)    # for "tweening" (gganimate)
-```
-
-```
-## 
-## Attaching package: 'transformr'
-```
-
-```
-## The following object is masked from 'package:sf':
-## 
-##     st_normalize
-```
-
-```r
 library(gifski)        # need the library for creating gifs but don't need to load each time
 library(shiny)         # for creating interactive apps
 gs4_deauth()           # To not have to authorize each time you knit.
@@ -182,139 +41,24 @@ library(ggridges)
 ```r
 # SNCF Train data
 small_trains <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-26/small_trains.csv") 
-```
 
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   year = col_double(),
-##   month = col_double(),
-##   service = col_character(),
-##   departure_station = col_character(),
-##   arrival_station = col_character(),
-##   journey_time_avg = col_double(),
-##   total_num_trips = col_double(),
-##   avg_delay_all_departing = col_double(),
-##   avg_delay_all_arriving = col_double(),
-##   num_late_at_departure = col_double(),
-##   num_arriving_late = col_double(),
-##   delay_cause = col_character(),
-##   delayed_number = col_double()
-## )
-```
-
-```r
 # Lisa's garden data
 garden_harvest <- read_sheet("https://docs.google.com/spreadsheets/d/1DekSazCzKqPS2jnGhKue7tLxRU3GVL1oxi-4bEM5IWw/edit?usp=sharing") %>% 
   mutate(date = ymd(date))
-```
 
-```
-## Reading from "2020_harvest"
-```
-
-```
-## Range "Sheet1"
-```
-
-```r
 # Lisa's Mallorca cycling data
 mallorca_bike_day7 <- read_csv("https://www.dropbox.com/s/zc6jan4ltmjtvy0/mallorca_bike_day7.csv?dl=1") %>% 
   select(1:4, speed)
-```
 
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   lon = col_double(),
-##   lat = col_double(),
-##   ele = col_double(),
-##   time = col_datetime(format = ""),
-##   extensions = col_double(),
-##   ele.num = col_double(),
-##   date = col_date(format = ""),
-##   hrminsec = col_datetime(format = ""),
-##   time_hr = col_double(),
-##   dist_km = col_double(),
-##   speed = col_double()
-## )
-```
-
-```r
 # Heather Lendway's Ironman 70.3 Pan Am championships Panama data
 panama_swim <- read_csv("https://raw.githubusercontent.com/llendway/gps-data/master/data/panama_swim_20160131.csv")
-```
 
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   lon = col_double(),
-##   lat = col_double(),
-##   time = col_datetime(format = ""),
-##   extensions = col_double(),
-##   ele = col_logical(),
-##   event = col_character(),
-##   date = col_date(format = ""),
-##   hrminsec = col_datetime(format = "")
-## )
-```
-
-```r
 panama_bike <- read_csv("https://raw.githubusercontent.com/llendway/gps-data/master/data/panama_bike_20160131.csv")
-```
 
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   lon = col_double(),
-##   lat = col_double(),
-##   ele = col_double(),
-##   time = col_datetime(format = ""),
-##   extensions = col_double(),
-##   event = col_character(),
-##   date = col_date(format = ""),
-##   hrminsec = col_datetime(format = "")
-## )
-```
-
-```r
 panama_run <- read_csv("https://raw.githubusercontent.com/llendway/gps-data/master/data/panama_run_20160131.csv")
-```
 
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   lon = col_double(),
-##   lat = col_double(),
-##   ele = col_double(),
-##   time = col_datetime(format = ""),
-##   extensions = col_double(),
-##   event = col_character(),
-##   date = col_date(format = ""),
-##   hrminsec = col_datetime(format = "")
-## )
-```
-
-```r
 #COVID-19 data from the New York Times
 covid19 <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
-```
-
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   date = col_date(format = ""),
-##   state = col_character(),
-##   fips = col_character(),
-##   cases = col_double(),
-##   deaths = col_double()
-## )
 ```
 
 ## Put your homework on GitHub!
@@ -346,31 +90,6 @@ Once your repository is created, you should always open your **project** rather 
 ```r
 ikea <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-11-03/ikea.csv')
 ```
-
-```
-## Warning: Missing column names filled in: 'X1' [1]
-```
-
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   X1 = col_double(),
-##   item_id = col_double(),
-##   name = col_character(),
-##   category = col_character(),
-##   price = col_double(),
-##   old_price = col_character(),
-##   sellable_online = col_logical(),
-##   link = col_character(),
-##   other_colors = col_character(),
-##   short_description = col_character(),
-##   designer = col_character(),
-##   depth = col_double(),
-##   height = col_double(),
-##   width = col_double()
-## )
-```
   
 
 ```r
@@ -391,18 +110,24 @@ top_priceIkea <- proper_ikea[order(-proper_ikea$price),] %>%
 top_ikea_graph <- top_priceIkea %>% 
   arrange(price) %>% 
   mutate( category = fct_reorder(category, price)) %>% 
-  ggplot(aes(x = category, y = price, fill = category)) +
-  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), plot.title = element_text(hjust = 0.5, size = 18, face = "bold"), plot.subtitle = element_text(hjust = 0.5, face = "italic")) +
+  ggplot(aes(x = category, 
+             y = price, 
+             fill = category)) +
+  theme(axis.title.x=element_blank(), 
+        axis.text.x=element_blank(), 
+        plot.title = element_text(hjust = 0.5, 
+                                  size = 18, face = "bold"), 
+        plot.subtitle = element_text(hjust = 0.5, 
+                                     face = "italic")) +
   labs(fill = "Appliance Type", title = "Most Expensive Appliances at Ikea", subtitle = "Macalester Intro to Data science Tidy Tuesday", y = "Recent Price in Saudi Riyals") +
   geom_boxplot(color = "darkgray")
-
 
 ggplotly(top_ikea_graph,
          tooltip = c("text", "x"))
 ```
 
-<!--html_preserve--><div id="htmlwidget-d71abec0da61e6a54279" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d71abec0da61e6a54279">{"x":{"data":[{"x":[1],"y":[5144],"hoverinfo":"y","type":"box","fillcolor":"rgba(248,118,109,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Outdoor furniture","legendgroup":"Outdoor furniture","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[2,2,2,2,2,2,2,2,2,2,2],"y":[6965,6065,5465,5465,5865,5275,5275,5275,5465,6965,5465],"hoverinfo":"y","type":"box","fillcolor":"rgba(196,154,0,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Chairs","legendgroup":"Chairs","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[3,3],"y":[5290,6480],"hoverinfo":"y","type":"box","fillcolor":"rgba(83,180,0,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Cabinets & cupboards","legendgroup":"Cabinets & cupboards","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],"y":[6128,5465,6065,6965,5465,5275,5300,5275,5865,6614,6028,5275,6180,6024,6608,5465,5465,6965],"hoverinfo":"y","type":"box","fillcolor":"rgba(0,192,148,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Tables & desks","legendgroup":"Tables & desks","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[5,5,5,5,5,5,5,5,5,5],"y":[6395,5965,5240,6805,6585,8380,5345,6065,5260,5380],"hoverinfo":"y","type":"box","fillcolor":"rgba(0,182,235,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Wardrobes","legendgroup":"Wardrobes","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],"y":[5040,5040,5500,5145,5428,5436,5600,5700,6295,5796,5800,5810,8240,5300,5495,7610,5530,8495,5553,5995,6000,6895,5840,6030,6440,5945,9585,6095,6780,6228,6110,5990,6400,7988,7785,6545,6575,8900,7765,7748,6160,7873,7400,6680,8395,8295],"hoverinfo":"y","type":"box","fillcolor":"rgba(165,138,255,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Sofas & armchairs","legendgroup":"Sofas & armchairs","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[7,7,7,7,7,7,7,7,7,7,7,7],"y":[5553,7610,5780,7873,8356,6110,5840,7765,8551,7785,9585,7796],"hoverinfo":"y","type":"box","fillcolor":"rgba(251,97,215,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Beds","legendgroup":"Beds","showlegend":true,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":50.1386467413865,"r":7.30593607305936,"b":13.8812785388128,"l":48.9497716894977},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"<b> Most Expensive Appliances at Ikea <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":23.9103362391034},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,7.6],"tickmode":"array","ticktext":["Outdoor furniture","Chairs","Cabinets & cupboards","Tables & desks","Wardrobes","Sofas & armchairs","Beds"],"tickvals":[1,2,3,4,5,6,7],"categoryorder":"array","categoryarray":["Outdoor furniture","Chairs","Cabinets & cupboards","Tables & desks","Wardrobes","Sofas & armchairs","Beds"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4812.75,9812.25],"tickmode":"array","ticktext":["5000","6000","7000","8000","9000"],"tickvals":[5000,6000,7000,8000,9000],"categoryorder":"array","categoryarray":["5000","6000","7000","8000","9000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Recent Price in Saudi Riyals","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.913385826771654},"annotations":[{"text":"Appliance Type","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"139c16e059f8f":{"x":{},"y":{},"fill":{},"type":"box"}},"cur_data":"139c16e059f8f","visdat":{"139c16e059f8f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-4787dbf726f0715483ec" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4787dbf726f0715483ec">{"x":{"data":[{"x":[1],"y":[5144],"hoverinfo":"y","type":"box","fillcolor":"rgba(248,118,109,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Outdoor furniture","legendgroup":"Outdoor furniture","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[2,2,2,2,2,2,2,2,2,2,2],"y":[6965,6065,5465,5465,5865,5275,5275,5275,5465,6965,5465],"hoverinfo":"y","type":"box","fillcolor":"rgba(196,154,0,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Chairs","legendgroup":"Chairs","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[3,3],"y":[5290,6480],"hoverinfo":"y","type":"box","fillcolor":"rgba(83,180,0,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Cabinets & cupboards","legendgroup":"Cabinets & cupboards","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],"y":[6128,5465,6065,6965,5465,5275,5300,5275,5865,6614,6028,5275,6180,6024,6608,5465,5465,6965],"hoverinfo":"y","type":"box","fillcolor":"rgba(0,192,148,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Tables & desks","legendgroup":"Tables & desks","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[5,5,5,5,5,5,5,5,5,5],"y":[6395,5965,5240,6805,6585,8380,5345,6065,5260,5380],"hoverinfo":"y","type":"box","fillcolor":"rgba(0,182,235,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Wardrobes","legendgroup":"Wardrobes","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],"y":[5040,5040,5500,5145,5428,5436,5600,5700,6295,5796,5800,5810,8240,5300,5495,7610,5530,8495,5553,5995,6000,6895,5840,6030,6440,5945,9585,6095,6780,6228,6110,5990,6400,7988,7785,6545,6575,8900,7765,7748,6160,7873,7400,6680,8395,8295],"hoverinfo":"y","type":"box","fillcolor":"rgba(165,138,255,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Sofas & armchairs","legendgroup":"Sofas & armchairs","showlegend":true,"xaxis":"x","yaxis":"y","frame":null},{"x":[7,7,7,7,7,7,7,7,7,7,7,7],"y":[5553,7610,5780,7873,8356,6110,5840,7765,8551,7785,9585,7796],"hoverinfo":"y","type":"box","fillcolor":"rgba(251,97,215,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"},"size":5.66929133858268},"line":{"color":"rgba(169,169,169,1)","width":1.88976377952756},"name":"Beds","legendgroup":"Beds","showlegend":true,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":50.1386467413865,"r":7.30593607305936,"b":13.8812785388128,"l":48.9497716894977},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"<b> Most Expensive Appliances at Ikea <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":23.9103362391034},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,7.6],"tickmode":"array","ticktext":["Outdoor furniture","Chairs","Cabinets & cupboards","Tables & desks","Wardrobes","Sofas & armchairs","Beds"],"tickvals":[1,2,3,4,5,6,7],"categoryorder":"array","categoryarray":["Outdoor furniture","Chairs","Cabinets & cupboards","Tables & desks","Wardrobes","Sofas & armchairs","Beds"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4812.75,9812.25],"tickmode":"array","ticktext":["5000","6000","7000","8000","9000"],"tickvals":[5000,6000,7000,8000,9000],"categoryorder":"array","categoryarray":["5000","6000","7000","8000","9000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Recent Price in Saudi Riyals","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.913385826771654},"annotations":[{"text":"Appliance Type","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"13e695d3a8f2":{"x":{},"y":{},"fill":{},"type":"box"}},"cur_data":"13e695d3a8f2","visdat":{"13e695d3a8f2":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
   
   
   
@@ -410,14 +135,6 @@ ggplotly(top_ikea_graph,
 ```r
 garden_harvest <- read_sheet("https://docs.google.com/spreadsheets/d/1DekSazCzKqPS2jnGhKue7tLxRU3GVL1oxi-4bEM5IWw/edit?usp=sharing") %>%
   mutate(date = ymd(date))
-```
-
-```
-## Reading from "2020_harvest"
-```
-
-```
-## Range "Sheet1"
 ```
 
   
@@ -436,8 +153,8 @@ ggplotly(garden_graph,
          tooltip = c("text", "x"))
 ```
 
-<!--html_preserve--><div id="htmlwidget-6dbd6dbfb116904e40d1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6dbd6dbfb116904e40d1">{"x":{"data":[{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0,0,0,39,18,0,0,52,0,0,89,0,23,81,0,216,0,0,67,75,0,0,0,137,0],"x":[18424,18426,18430,18431,18432,18432,18433,18434,18435,18435,18437,18438,18440,18441,18442,18442,18444,18446,18447,18450,18450,18451,18452,18454,18455,18456,18459],"y":[12,19,48,47,39,38,22,95,52,18,122,30,52,111,58,82,60,217,147,67,13,39,61,79,83,53,61],"text":["date: 2020-06-11","date: 2020-06-13","date: 2020-06-17","date: 2020-06-18","date: 2020-06-19","date: 2020-06-19","date: 2020-06-20","date: 2020-06-21","date: 2020-06-22","date: 2020-06-22","date: 2020-06-24","date: 2020-06-25","date: 2020-06-27","date: 2020-06-28","date: 2020-06-29","date: 2020-06-29","date: 2020-07-01","date: 2020-07-03","date: 2020-07-04","date: 2020-07-07","date: 2020-07-07","date: 2020-07-08","date: 2020-07-09","date: 2020-07-11","date: 2020-07-12","date: 2020-07-13","date: 2020-07-16"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(255,215,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Farmer's Market Blend","legendgroup":"Farmer's Market Blend","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,322,0,0,0,0,0,0,0,0],"x":[18465,18466,18467,18469,18470,18471,18472,18473,18474,18477,18478,18480,18481,18485,18486,18488,18489,18490,18491,18492,18494,18497,18498,18501,18502,18521,18531,18532,18542],"y":[23,130,16,81,99,91,73,94,107,65,56,98,19,92,73,80,56,45,67,87,99,111,134,14,85,8,95,139,17],"text":["date: 2020-07-22","date: 2020-07-23","date: 2020-07-24","date: 2020-07-26","date: 2020-07-27","date: 2020-07-28","date: 2020-07-29","date: 2020-07-30","date: 2020-07-31","date: 2020-08-03","date: 2020-08-04","date: 2020-08-06","date: 2020-08-07","date: 2020-08-11","date: 2020-08-12","date: 2020-08-14","date: 2020-08-15","date: 2020-08-16","date: 2020-08-17","date: 2020-08-18","date: 2020-08-20","date: 2020-08-23","date: 2020-08-24","date: 2020-08-27","date: 2020-08-28","date: 2020-09-16","date: 2020-09-26","date: 2020-09-27","date: 2020-10-07"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(0,100,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Lettuce Mixture","legendgroup":"Lettuce Mixture","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.900000000001455,"base":0,"x":[18442],"y":[23],"text":"date: 2020-06-29","type":"bar","marker":{"autocolorscale":false,"color":"rgba(255,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"mustard greens","legendgroup":"mustard greens","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0],"x":[18419,18421,18422],"y":[20,15,10],"text":["date: 2020-06-06","date: 2020-06-08","date: 2020-06-09"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(173,216,230,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"reseed","legendgroup":"reseed","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0,0,0,0,0,0,0],"x":[18433,18440,18445,18446,18449,18451,18456,18463,18494],"y":[18,89,144,216,189,75,137,123,322],"text":["date: 2020-06-20","date: 2020-06-27","date: 2020-07-02","date: 2020-07-03","date: 2020-07-06","date: 2020-07-08","date: 2020-07-13","date: 2020-07-20","date: 2020-08-20"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(160,32,240,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Tatsoi","legendgroup":"Tatsoi","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"plot_bgcolor":"rgba(127,127,127,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of lettuce harvests","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18412.355,18548.645],"tickmode":"array","ticktext":["Jun","Jul","Aug","Sep","Oct"],"tickvals":[18414,18444,18475,18506,18536],"categoryorder":"array","categoryarray":["Jun","Jul","Aug","Sep","Oct"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(107,107,107,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-21.65,454.65],"tickmode":"array","ticktext":["0","100","200","300","400"],"tickvals":[0,100,200,300,400],"categoryorder":"array","categoryarray":["0","100","200","300","400"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(107,107,107,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"x","title":{"text":"Weight in grams","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.913385826771654},"annotations":[{"text":"variety","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"139c124e6f845":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"139c124e6f845","visdat":{"139c124e6f845":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-7cd2f87b0e56119f612b" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7cd2f87b0e56119f612b">{"x":{"data":[{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0,0,0,39,18,0,0,52,0,0,89,0,23,81,0,216,0,0,67,75,0,0,0,137,0],"x":[18424,18426,18430,18431,18432,18432,18433,18434,18435,18435,18437,18438,18440,18441,18442,18442,18444,18446,18447,18450,18450,18451,18452,18454,18455,18456,18459],"y":[12,19,48,47,39,38,22,95,52,18,122,30,52,111,58,82,60,217,147,67,13,39,61,79,83,53,61],"text":["date: 2020-06-11","date: 2020-06-13","date: 2020-06-17","date: 2020-06-18","date: 2020-06-19","date: 2020-06-19","date: 2020-06-20","date: 2020-06-21","date: 2020-06-22","date: 2020-06-22","date: 2020-06-24","date: 2020-06-25","date: 2020-06-27","date: 2020-06-28","date: 2020-06-29","date: 2020-06-29","date: 2020-07-01","date: 2020-07-03","date: 2020-07-04","date: 2020-07-07","date: 2020-07-07","date: 2020-07-08","date: 2020-07-09","date: 2020-07-11","date: 2020-07-12","date: 2020-07-13","date: 2020-07-16"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(255,215,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Farmer's Market Blend","legendgroup":"Farmer's Market Blend","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,322,0,0,0,0,0,0,0,0],"x":[18465,18466,18467,18469,18470,18471,18472,18473,18474,18477,18478,18480,18481,18485,18486,18488,18489,18490,18491,18492,18494,18497,18498,18501,18502,18521,18531,18532,18542],"y":[23,130,16,81,99,91,73,94,107,65,56,98,19,92,73,80,56,45,67,87,99,111,134,14,85,8,95,139,17],"text":["date: 2020-07-22","date: 2020-07-23","date: 2020-07-24","date: 2020-07-26","date: 2020-07-27","date: 2020-07-28","date: 2020-07-29","date: 2020-07-30","date: 2020-07-31","date: 2020-08-03","date: 2020-08-04","date: 2020-08-06","date: 2020-08-07","date: 2020-08-11","date: 2020-08-12","date: 2020-08-14","date: 2020-08-15","date: 2020-08-16","date: 2020-08-17","date: 2020-08-18","date: 2020-08-20","date: 2020-08-23","date: 2020-08-24","date: 2020-08-27","date: 2020-08-28","date: 2020-09-16","date: 2020-09-26","date: 2020-09-27","date: 2020-10-07"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(0,100,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Lettuce Mixture","legendgroup":"Lettuce Mixture","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.900000000001455,"base":0,"x":[18442],"y":[23],"text":"date: 2020-06-29","type":"bar","marker":{"autocolorscale":false,"color":"rgba(255,0,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"mustard greens","legendgroup":"mustard greens","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0],"x":[18419,18421,18422],"y":[20,15,10],"text":["date: 2020-06-06","date: 2020-06-08","date: 2020-06-09"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(173,216,230,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"reseed","legendgroup":"reseed","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455,0.900000000001455],"base":[0,0,0,0,0,0,0,0,0],"x":[18433,18440,18445,18446,18449,18451,18456,18463,18494],"y":[18,89,144,216,189,75,137,123,322],"text":["date: 2020-06-20","date: 2020-06-27","date: 2020-07-02","date: 2020-07-03","date: 2020-07-06","date: 2020-07-08","date: 2020-07-13","date: 2020-07-20","date: 2020-08-20"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(160,32,240,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Tatsoi","legendgroup":"Tatsoi","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"plot_bgcolor":"rgba(127,127,127,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of lettuce harvests","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18412.355,18548.645],"tickmode":"array","ticktext":["Jun","Jul","Aug","Sep","Oct"],"tickvals":[18414,18444,18475,18506,18536],"categoryorder":"array","categoryarray":["Jun","Jul","Aug","Sep","Oct"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(107,107,107,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-21.65,454.65],"tickmode":"array","ticktext":["0","100","200","300","400"],"tickvals":[0,100,200,300,400],"categoryorder":"array","categoryarray":["0","100","200","300","400"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(107,107,107,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"x","title":{"text":"Weight in grams","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.913385826771654},"annotations":[{"text":"variety","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"13e6964ad7e05":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"13e6964ad7e05","visdat":{"13e6964ad7e05":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
   
   2. Use animation to tell an interesting story with the `small_trains` dataset that contains data from the SNCF (National Society of French Railways). These are Tidy Tuesday data! Read more about it [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-26).
@@ -468,10 +185,6 @@ saved_trains <-small_trains %>%
        subtitle = "Moving to {next_state}") 
 
 anim_save("trains2.gif", saved_trains)
-```
-
-```
-## Picking joint bandwidth of 3.94
 ```
 
 ## Garden data
@@ -508,13 +221,7 @@ gardenHarv_ani <- garden_harvest %>%
        x = "Date",
        y = "Cumulative Daily Harvest in Lb",
        subtitle = "Moving to {frame_along}") 
-```
 
-```
-## `summarise()` regrouping output by 'variety' (override with `.groups` argument)
-```
-
-```r
 gardenHarv_ani
 ```
 
@@ -544,111 +251,17 @@ mallorca_map <- get_stamenmap(
     bbox = c(left = 2.28, bottom = 39.41, right = 3.03, top = 39.8), 
     maptype = "terrain",
     zoom = 11) 
-```
 
-```
-## Source : http://tile.stamen.com/terrain/11/1036/776.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1037/776.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1038/776.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1039/776.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1040/776.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1041/776.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1036/777.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1037/777.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1038/777.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1039/777.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1040/777.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1041/777.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1036/778.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1037/778.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1038/778.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1039/778.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1040/778.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1041/778.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1036/779.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1037/779.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1038/779.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1039/779.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1040/779.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/11/1041/779.png
-```
-
-```r
 ggmap(mallorca_map) +
   geom_point(data = mallorca_bike_day7, 
-             aes(x = lon, y = lat),
-             color = "blue", size = .5) +
+             aes(x = lon, 
+                 y = lat),
+             color = "blue", 
+             size = .5) +
   geom_path(data = mallorca_bike_day7, 
-             aes(x = lon, y = lat, color = ele),
+             aes(x = lon, 
+                 y = lat, 
+                 color = ele),
              size = .5) +
   labs(title = "Lisa Mallorca Bike Trail",
        subtitle = "Time: {frame_along}") +
@@ -671,78 +284,14 @@ total_trail <- panama_swim %>%
 panama_map <- get_stamenmap(
   bbox = c(left = -79.56, bottom = 8.88, right = -79.41, top = 9.001),
   maptype = "terrain",
-  zoom = 13
-)
-```
+  zoom = 13)
 
-```
-## Source : http://tile.stamen.com/terrain/13/2285/3890.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2286/3890.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2287/3890.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2288/3890.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2285/3891.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2286/3891.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2287/3891.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2288/3891.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2285/3892.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2286/3892.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2287/3892.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2288/3892.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2285/3893.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2286/3893.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2287/3893.png
-```
-
-```
-## Source : http://tile.stamen.com/terrain/13/2288/3893.png
-```
-
-```r
 ggmap(panama_map) +
   geom_point(data = total_trail, 
-             aes(x = lon, y = lat, color = event, shape = event),
+             aes(x = lon, 
+                 y = lat, 
+                 color = event, 
+                 shape = event),
              size = 2) +
   geom_path(data = total_trail,
             aes(x = lon, y = lat, color = event),
@@ -800,582 +349,6 @@ animate(covid19trajectory_gganim,
         duration = 30)
 ```
 
-```
-## Warning in self$trans$transform(x): NaNs produced
-```
-
-```
-## Warning: Transformation introduced infinite values in continuous y-axis
-```
-
-```
-## Warning in self$trans$transform(x): NaNs produced
-```
-
-```
-## Warning: Transformation introduced infinite values in continuous y-axis
-```
-
-```
-## Warning in self$trans$transform(x): NaNs produced
-```
-
-```
-## Warning: Transformation introduced infinite values in continuous y-axis
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 2 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 3 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 3 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 3 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 3 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 2 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 2 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 2 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 2 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 4 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 5 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 7 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 8 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 2 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 3 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 5 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_text).
-```
-
 ![](05_exercises_files/figure-html/unnamed-chunk-9-1.gif)<!-- -->
 
 ```r
@@ -1393,15 +366,6 @@ census_pop_est_2018 <- read_csv("https://www.dropbox.com/s/6txwv3b4ng7pepe/us_ce
   mutate(state = str_to_lower(state))
 ```
 
-```
-## 
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   state = col_character(),
-##   est_pop_2018 = col_double()
-## )
-```
-
 
 ```r
 covid19_population <-
@@ -1412,13 +376,7 @@ covid19_population <-
   group_by(state, est_pop_2018, date) %>%
   summarize(cumulative_cases = max(cases)) %>%
   mutate(cases_per_10000 = (cumulative_cases/est_pop_2018)*10000)
-```
 
-```
-## `summarise()` regrouping output by 'state', 'est_pop_2018' (override with `.groups` argument)
-```
-
-```r
 states_map <- map_data("state")
 
 covid19_map <- covid19_population %>% 
